@@ -19,7 +19,7 @@
   "sprite": "map/sprites/bright-v9",
   "glyphs": "{fontstack}/{range}.pbf",
   "layers": [
-    {
+    {                             
       "id": "background",
       "type": "background",
       "paint": {

@@ -84,6 +84,8 @@ services:
   postgresql:
     image: openremote/postgresql:${POSTGRESQL_VERSION:-latest}
     restart: always
+    ports:
+      - "127.0.0.1:5999:5432"
     volumes:
       - postgresql-data:/var/lib/postgresql/data
       - manager-data:/storage
@@ -98,7 +100,7 @@ services:
     volumes:
       - deployment-data:/deployment
     environment:
-      KEYCLOAK_ADMIN_PASSWORD: ${OR_ADMIN_PASSWORD:?OR_ADMIN_PASSWORD must be set}
+      KEYCLOAK_ADMIN_PASSWORD: admin
       KC_HOSTNAME: ${OR_HOSTNAME:-localhost}
       KC_HOSTNAME_PORT: ${OR_SSL_PORT:--1}
     # <<: *awslogs
@@ -118,7 +120,7 @@ services:
     environment:
       # Here are some typical environment variables you want to set
       # see openremote/profile/deploy.yml for details
-      OR_ADMIN_PASSWORD: ${OR_ADMIN_PASSWORD?OR_ADMIN_PASSWORD must be set}
+      OR_ADMIN_PASSWORD: admin
       OR_SETUP_TYPE: # Typical values to support are staging and production
       OR_SETUP_RUN_ON_RESTART:
       OR_EMAIL_HOST:
